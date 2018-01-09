@@ -1,0 +1,328 @@
+﻿<Window x:Class="Minesweeper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Minesweeper"
+        mc:Ignorable="d"
+        Title="Minesweeper"
+        Height="357" Width="283"
+        MinHeight="357"
+        MinWidth="283"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="#FF401D1D" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush/>
+        </Grid.Background>
+
+        <StackPanel Grid.ColumnSpan="11">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Game">
+                    <MenuItem Header="_New Game" Click="MenuItem_Restart" />
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+
+        <Label x:Name="minesCounter" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,36" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2" FontFamily="pack://application:,,,/fonts/#digital-7" FontSize="38" Foreground="Red">
+            10
+        </Label>
+        <Label x:Name="timeCounter" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,36" Grid.ColumnSpan="10" Grid.RowSpan="2" FontFamily="pack://application:,,,/fonts/#digital-7" FontSize="38" Foreground="Red">
+            99
+        </Label>
+
+        <Image x:Name="faceImage" Grid.Row="0" Grid.ColumnSpan="3" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Source="img/faceNormal.png" Grid.Column="4" MouseDown="faceImage_MouseDown" Margin="0,25,0,0"/>
+
+        <Button Grid.Row="1" Grid.Column="1" x:Name="b_00" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_00" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="2" x:Name="b_01" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_01" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="3" x:Name="b_02" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_02" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="4" x:Name="b_03" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_03" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="5" x:Name="b_04" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_04" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="6" x:Name="b_05" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_05" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="7" x:Name="b_06" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_06" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="8" x:Name="b_07" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_07" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="9" x:Name="b_08" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_08" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+
+        <Button Grid.Row="2" Grid.Column="1" x:Name="b_10" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_10" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="2" x:Name="b_11" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_11" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="3" x:Name="b_12" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_12" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="4" x:Name="b_13" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_13" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="5" x:Name="b_14" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_14" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="6" x:Name="b_15" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_15" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="7" x:Name="b_16" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_16" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="8" x:Name="b_17" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_17" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="9" x:Name="b_18" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_18" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+
+        <Button Grid.Row="3" Grid.Column="1" x:Name="b_20" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_20" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="2" x:Name="b_21" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_21" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="3" x:Name="b_22" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_22" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="4" x:Name="b_23" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_23" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="5" x:Name="b_24" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_24" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="6" x:Name="b_25" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_25" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="7" x:Name="b_26" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_26" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="8" x:Name="b_27" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_27" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="9" x:Name="b_28" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_28" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+
+        <Button Grid.Row="4" Grid.Column="1" x:Name="b_30" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_30" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="2" x:Name="b_31" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_31" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="3" x:Name="b_32" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_32" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="4" x:Name="b_33" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_33" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="5" x:Name="b_34" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_34" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="6" x:Name="b_35" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_35" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="7" x:Name="b_36" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_36" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="8" x:Name="b_37" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_37" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="9" x:Name="b_38" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_38" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+
+        <Button Grid.Row="5" Grid.Column="1" x:Name="b_40" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_40" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="2" x:Name="b_41" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_41" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="3" x:Name="b_42" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_42" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="4" x:Name="b_43" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_43" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="5" x:Name="b_44" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_44" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="6" x:Name="b_45" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_45" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="7" x:Name="b_46" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_46" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="8" x:Name="b_47" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_47" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="9" x:Name="b_48" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_48" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+
+        <Button Grid.Row="6" Grid.Column="1" x:Name="b_50" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_50" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="2" x:Name="b_51" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_51" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="3" x:Name="b_52" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_52" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="4" x:Name="b_53" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_53" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="5" x:Name="b_54" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_54" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="6" x:Name="b_55" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_55" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="7" x:Name="b_56" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_56" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="8" x:Name="b_57" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_57" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="9" x:Name="b_58" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_58" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+
+        <Button Grid.Row="7" Grid.Column="1" x:Name="b_60" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_60" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="2" x:Name="b_61" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_61" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="3" x:Name="b_62" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_62" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="4" x:Name="b_63" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_63" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="5" x:Name="b_64" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_64" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="6" x:Name="b_65" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_65" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="7" x:Name="b_66" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_66" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="8" x:Name="b_67" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_67" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="9" x:Name="b_68" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_68" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+
+        <Button Grid.Row="8" Grid.Column="1" x:Name="b_70" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_70" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="8" Grid.Column="2" x:Name="b_71" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_71" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="8" Grid.Column="3" x:Name="b_72" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_72" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="8" Grid.Column="4" x:Name="b_73" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_73" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="8" Grid.Column="5" x:Name="b_74" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_74" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="8" Grid.Column="6" x:Name="b_75" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_75" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="8" Grid.Column="7" x:Name="b_76" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_76" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="8" Grid.Column="8" x:Name="b_77" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_77" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="8" Grid.Column="9" x:Name="b_78" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_78" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+
+        <Button Grid.Row="9" Grid.Column="1" x:Name="b_80" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_80" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="9" Grid.Column="2" x:Name="b_81" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_81" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="9" Grid.Column="3" x:Name="b_82" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_82" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="9" Grid.Column="4" x:Name="b_83" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_83" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="9" Grid.Column="5" x:Name="b_84" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_84" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="9" Grid.Column="6" x:Name="b_85" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_85" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="9" Grid.Column="7" x:Name="b_86" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_86" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="9" Grid.Column="8" x:Name="b_87" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_87" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+        <Button Grid.Row="9" Grid.Column="9" x:Name="b_88" Click="Pole_Click" FontWeight="ExtraBold" FontSize="15" MouseRightButtonDown="poleRightClick">
+            <Image x:Name="i_88" Stretch="Uniform" Source="img/mine.png" Visibility="Collapsed"/>
+        </Button>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+    </Grid>
+
+
+
+
+</Window>
