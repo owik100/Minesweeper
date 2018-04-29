@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Minesweeper.Saper;
 
 using System.Diagnostics;
 
@@ -32,6 +32,7 @@ namespace Minesweeper
         int numbersOfVisible = 81;
         int numberOfMinesByPlayer = 10;
         int time;
+        bool firstClick = true;
 
 
         public MainWindow()
@@ -45,7 +46,7 @@ namespace Minesweeper
 
             timeCounter.Content = 0;
 
-            board.GenerateMines();
+            //board.GenerateMines();
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -54,29 +55,34 @@ namespace Minesweeper
               timeCounter.Content = time;
         }
 
-        private void RefreshBoard()
-        {
-            for (int i = 0; i < board.pola.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.pola.GetLength(1); j++)
-                {
-                    Button button = (Button)this.FindName("b_" + i + j);
-                    button.Content = board.pola[i, j].value;
-                }
-            }
-        }
+        //private void RefreshBoard()
+        //{
+        //    for (int i = 0; i < board.pola.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < board.pola.GetLength(1); j++)
+        //        {
+        //            Button button = (Button)this.FindName("b_" + i + j);
+        //            button.Content = board.pola[i, j].value;
+        //        }
+        //    }
+        //}
 
         private void Pole_Click(object sender, EventArgs e)
         {
-            dispatcherTimer.Start();
-
             Button btn = sender as Button;
             string name = btn.Name;
             int x = int.Parse(name[2].ToString());
             int y = int.Parse((name[3]).ToString());
 
-            if(!board.pola[x,y].flagged && !gameWon)
+            if(firstClick)
             {
+                firstClick = false;
+                board.GenerateMines(x, y);
+            }
+
+            if(!board.pola[x,y].flagged && !gameWon && !gameOver)
+            {
+                dispatcherTimer.Start();
 
                 if (board.pola[x, y].value == 0)
                 {
@@ -101,9 +107,9 @@ namespace Minesweeper
                     }
         
                 }
+                CheckWin();
             }
-            Debug.WriteLine(numbersOfVisible);
-            CheckWin();
+           
         }
 
         private void poleRightClick(object sender, MouseButtonEventArgs e)
@@ -113,7 +119,7 @@ namespace Minesweeper
             int x = int.Parse(name[2].ToString());
             int y = int.Parse((name[3]).ToString());
 
-            if (!board.pola[x, y].flagged && numberOfMinesByPlayer>0 && !board.pola[x, y].visible)
+            if (!board.pola[x, y].flagged && numberOfMinesByPlayer>0 && !board.pola[x, y].visible && !gameWon)
             {
                 numberOfMinesByPlayer--;
                 minesCounter.Content = numberOfMinesByPlayer;
@@ -123,7 +129,7 @@ namespace Minesweeper
 
                 image.Source = new BitmapImage(new Uri("/Minesweeper;component/img/flag.png", UriKind.Relative));
             }
-            else if(board.pola[x, y].flagged)
+            else if(board.pola[x, y].flagged && !gameWon)
             {
                 numberOfMinesByPlayer++;
                 minesCounter.Content = numberOfMinesByPlayer;
@@ -141,6 +147,9 @@ namespace Minesweeper
                 gameWon = true;
                 faceImage.Source = new BitmapImage(new Uri("/Minesweeper;component/img/faceWin.png", UriKind.Relative));
                 dispatcherTimer.Stop();
+                AddRecord addRecord = new AddRecord(time);
+                addRecord.ShowDialog();
+                Wyniki_Click(null, null);
             }
         }
 
@@ -270,11 +279,12 @@ namespace Minesweeper
 
                     image.Visibility = Visibility.Collapsed;
                     image.Source = new BitmapImage(new Uri("/Minesweeper;component/img/mine.png", UriKind.Relative));
+                    faceImage.Source = new BitmapImage(new Uri("/Minesweeper;component/img/faceNormal.png", UriKind.Relative));
                 }
             }
 
             board.GenerateBoard();
-            board.GenerateMines();
+            firstClick = true;
             gameOver = false;
             gameWon = false;
             numbersOfVisible = 81;
@@ -288,6 +298,27 @@ namespace Minesweeper
         private void MenuItem_Restart(object sender, RoutedEventArgs e)
         {
             Restart();
+        }
+
+        private void Wyniki_Click(object sender, RoutedEventArgs e)
+        {
+            DataBaseWindow dataBaseWindow = new DataBaseWindow();
+            dataBaseWindow.ShowDialog();
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            string language = (sender as MenuItem).Tag.ToString();
+
+            HelpWindow helpWindow = new HelpWindow(language);
+            helpWindow.ShowDialog();
+        }
+
+        private void Dodaj(object sender, RoutedEventArgs e)
+        {
+            AddRecord addRecord = new AddRecord(time);
+            addRecord.ShowDialog();
+            Wyniki_Click(null,null);
         }
     }
 }

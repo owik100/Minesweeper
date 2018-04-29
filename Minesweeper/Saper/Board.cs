@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Diagnostics;
 
-namespace Minesweeper
+namespace Minesweeper.Saper
 {
     class Board
     {
@@ -31,7 +31,7 @@ namespace Minesweeper
             }
         }
 
-        public void GenerateMines()
+        public void GenerateMines(int firstClickX, int firstClickY)
         {
             Random random = new Random();
 
@@ -42,7 +42,7 @@ namespace Minesweeper
                 int x = random.Next(0, 8);
                 int y = random.Next(0, 8);
 
-                if(pola[x,y].value!=9)
+                if(pola[x,y].value!=9 && x!=firstClickX && y!=firstClickY)
                 {
                     pola[x, y].value = 9;
                     Debug.WriteLine(x + " " + y);
