@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minesweeper.Saper
+namespace Minesweeper.Models
 {
-    class Pole
+    public class Pole
     {
         public int value=0;
         public bool visible=false;

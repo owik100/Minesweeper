@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Minesweeper.BazaDanych;
 
-namespace Minesweeper
+namespace Minesweeper.Views
 {
     /// <summary>
     /// Interaction logic for AddRecord.xaml

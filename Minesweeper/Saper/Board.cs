@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Minesweeper.Models;
 using System.Diagnostics;
+
 
 namespace Minesweeper.Saper
 {
-    class Board
+    public class Board
     {
        public Pole[,] pola;
        public int numbersOfMines=10;
